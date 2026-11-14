@@ -1,0 +1,28 @@
+{
+  "description": "Keeps the Fábrica de Asas no Ar rules in ~/.claude/rules/fabrica-de-asas-no-ar/ in sync and blocks any change to production (main/master) that does not come through a pull request from dev.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/preferences.sh\" session-start",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/guard-production.sh\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

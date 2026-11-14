@@ -1,0 +1,14 @@
+{
+  "name": "fabrica-de-asas-no-ar",
+  "displayName": "Fábrica de Asas no Ar",
+  "description": "Complemento do plugin Fábrica de Asas para quem vai colocar um site ou sistema no ar: trabalho num ambiente de testes, publicação em produção só com alerta e confirmação, trava que protege a produção e a lista do que conferir antes de abrir para o público.",
+  "author": {
+    "name": "Guilherme Almeida Girardi",
+    "url": "https://github.com/ggirardi1"
+  },
+  "homepage": "https://github.com/fabricadeasas/claude-code-go-live",
+  "repository": "https://github.com/fabricadeasas/claude-code-go-live",
+  "license": "MIT",
+  "keywords": ["iniciantes", "publicacao", "deploy", "github-actions", "pt-BR"],
+  "dependencies": ["fabrica-de-asas"]
+}
