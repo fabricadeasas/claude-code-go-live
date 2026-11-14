@@ -1,5 +1,5 @@
 {
-  "description": "Keeps the Fábrica de Asas no Ar rules in ~/.claude/rules/fabrica-de-asas-no-ar/ in sync and blocks any change to production (main/master) that does not come through a pull request from dev.",
+  "description": "Mantém as preferências da Fábrica de Asas no Ar em ~/.claude/rules/fabrica-de-asas-no-ar/ atualizadas e bloqueia qualquer mudança na produção (main/master) que não venha por um pedido de junção (pull request) da dev.",
   "hooks": {
     "SessionStart": [
       {

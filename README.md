@@ -1,43 +1,39 @@
-# Claude Code, go live
+# Claude Code no ar
 
-**English** · [Português (Brasil)](README.pt-BR.md)
+Complemento do plugin [`fabrica-de-asas`](https://github.com/fabricadeasas/claude-code-for-everyone) para quem vai colocar um site ou sistema no ar. Faz parte do curso de publicação da Fábrica de Asas.
 
-Add-on to the [`fabrica-de-asas`](https://github.com/fabricadeasas/claude-code-for-everyone) plugin for people who are about to put a website or system online. Part of the Fábrica de Asas publishing course.
+O plugin básico guarda as versões do projeto numa linha só. Este acrescenta o que muda quando existe um servidor: um ambiente de testes, a produção protegida e os cuidados antes de abrir para o público.
 
-The basic plugin keeps the project's versions on a single line. This one adds what changes once there is a server: a test environment, a protected production line and the checks to run before opening to the public.
-
-| What it brings | In practice |
+| O que ele traz | Na prática |
 | --- | --- |
-| **Test environment** | Claude works on a test line (`dev`) without being asked. If the project deploys `dev` automatically, you see the change at a test address before it goes live |
-| **Publish without surprises** | Production (`main`) only receives changes after a warning and your OK (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). If the project has no server configured on GitHub yet, it tells you there is nothing to publish |
-| **Production lock** | Commands that would change production without going through the test line and the publish request are blocked before they run |
-| **Before going public** | Terms of use, privacy law (LGPD), security and the rest of what to check on the first release |
+| **Ambiente de testes** | O Claude trabalha numa versão de testes (`dev`) sem você pedir. Se o projeto publica a `dev` sozinho, você vê a mudança num endereço de testes antes de ir ao ar |
+| **Publicar sem susto** | Produção (`main`) só recebe mudanças com um alerta e o seu ok (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). Se o projeto ainda não tem servidor configurado no GitHub, ele avisa que não há o que publicar |
+| **Trava de produção** | Comandos que mudariam a produção sem passar pela versão de testes e pelo pedido de publicação são bloqueados antes de rodar |
+| **Antes de abrir para o público** | Termos de uso, LGPD, segurança e o resto do que conferir na primeira publicação |
 
-## How to install
+## Como instalar
 
-It needs the `fabrica-de-asas` plugin, which is installed along with it if missing. In Claude Code:
+Precisa do plugin `fabrica-de-asas`; se ainda não tiver, ele vem junto. No Claude Code:
 
 ```
 /plugin marketplace add fabricadeasas/claude-code-for-everyone
 /plugin install fabrica-de-asas-no-ar@fabricadeasas
 ```
 
-The preferences take effect **from the second conversation on**: in the first one, the plugin only puts them in place.
+As preferências passam a valer **a partir da segunda conversa**: na primeira, o plugin só as coloca no lugar.
 
-To adjust or turn it off, talk to Claude: "turn off the Fábrica de Asas no Ar preferences" or "I want to work straight on main" (it explains the risk before turning the lock off).
+Para ajustar ou desligar, converse com o Claude: "desliga as preferências da Fábrica de Asas no Ar" ou "quero trabalhar direto na main" (ele explica o risco antes de desligar a trava).
 
-For now, the plugin is available in Portuguese only.
-
-## How it works
+## Como funciona por dentro
 
 ```
-.claude-plugin/plugin.json   the plugin, which depends on fabrica-de-asas
-rules/                       test environment, production and when to publish
-skills/                      versionamento-publicar-dev, versionamento-publicar-prod, publicar-com-seguranca, preferences
-hooks/hooks.json             triggers: session start and production lock
-scripts/                     what the triggers run
+.claude-plugin/plugin.json   o plugin, que depende do fabrica-de-asas
+rules/                       ambiente de testes, produção e quando publicar
+skills/                      versionamento-publicar-dev, versionamento-publicar-prod, publicar-com-seguranca, preferências
+hooks/hooks.json             gatilhos: início de conversa e trava de produção
+scripts/                     o que os gatilhos executam
 ```
 
-## License
+## Licença
 
 MIT
