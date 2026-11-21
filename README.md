@@ -34,7 +34,10 @@ rules/                       ambiente de testes, produção e quando publicar
 skills/                      versionamento-publicar-dev, versionamento-publicar-prod, publicar-com-seguranca, preferências
 hooks/hooks.json             gatilhos: início de conversa e trava de produção
 scripts/                     o que os gatilhos executam
+tests/                       testes da trava de produção (bash tests/guard-production.test.sh)
 ```
+
+A trava olha o projeto que cada comando realmente mexe (`git -C`, `cd` e `Set-Location` antes do comando), não a pasta da conversa. Texto que só vai para um arquivo (heredoc) ou dentro de aspas não conta como comando.
 
 ## Licença
 
