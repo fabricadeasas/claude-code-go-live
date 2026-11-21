@@ -6,8 +6,9 @@ O plugin básico guarda as versões do projeto numa linha só. Este acrescenta o
 
 | O que ele traz | Na prática |
 | --- | --- |
-| **Ambiente de testes** | O Claude trabalha numa versão de testes (`dev`) sem você pedir. Se o projeto publica a `dev` sozinho, você vê a mudança num endereço de testes antes de ir ao ar |
-| **Publicar sem susto** | Produção (`main`) só recebe mudanças com um alerta e o seu ok (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). Se o projeto ainda não tem servidor configurado no GitHub, ele avisa que não há o que publicar |
+| **Salvar não publica** | "Salva" guarda a mudança num rascunho, com cópia no GitHub, sem colocar nada no ar |
+| **Ambiente de testes** | "Publica nos testes" leva o rascunho para a versão de testes (`dev`). Se o projeto publica a `dev` sozinho, o Claude confere a mudança no endereço de testes |
+| **Publicar num pedido só** | "Coloca no ar" faz o caminho inteiro até produção (`main`) e confere no site, sem pedir ok a cada etapa (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). Se o projeto ainda não tem servidor configurado no GitHub, ele avisa que não há para onde publicar |
 | **Trava de produção** | Comandos que mudariam a produção sem passar pela versão de testes e pelo pedido de publicação são bloqueados antes de rodar |
 | **Antes de abrir para o público** | Termos de uso, LGPD, segurança e o resto do que conferir na primeira publicação |
 

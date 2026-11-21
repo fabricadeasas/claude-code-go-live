@@ -1,7 +1,7 @@
 {
   "name": "fabrica-de-asas-no-ar",
   "displayName": "Fábrica de Asas no Ar",
-  "description": "Complemento do plugin Fábrica de Asas para quem vai colocar um site ou sistema no ar: trabalho num ambiente de testes, publicação em produção só com alerta e confirmação, trava que protege a produção e a lista do que conferir antes de abrir para o público.",
+  "description": "Complemento do plugin Fábrica de Asas para quem vai colocar um site ou sistema no ar: salvar sem publicar, ambiente de testes, publicação em produção num pedido só, trava que protege a produção e a lista do que conferir antes de abrir para o público.",
   "author": {
     "name": "Guilherme Almeida Girardi",
     "url": "https://github.com/ggirardi1"

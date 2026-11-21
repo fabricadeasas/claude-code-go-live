@@ -31,4 +31,5 @@ Algo que vai para o público precisa de cuidados que a pessoa não sabe que exis
 ## Como conduzir
 - Mostre a lista como cartões curtos: o que já está ok, o que falta e o que precisa de decisão dela. Sem jargão: "o site abre com cadeado (HTTPS)", não "TLS configurado".
 - O que falta e é técnico, proponha fazer. O que é dela (termos de uso, política de privacidade, escolha do serviço de pagamento), explique por que importa em uma frase.
-- Publicar é ação com consequência: só publique com o ok explícito da pessoa, depois da lista.
+- O pedido de publicar já é o ok. A lista não vira mais uma pergunta: resolva o que é técnico e siga. Pare só se faltar algo crítico (dado privado sem proteção, site sem HTTPS, teste falhando) ou algo que só ela pode decidir (termos de uso, política de privacidade, serviço de pagamento).
+- Se ninguém pediu para publicar, não publique: ofereça em uma frase.
