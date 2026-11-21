@@ -1,18 +1,21 @@
 ---
 name: versionamento-publicar-prod
-description: Publica o projeto em produção num pedido só (passa pelo ambiente de testes, leva a linha dev para a main, que dispara a publicação automática do GitHub Actions, acompanha e confere no ar) para quem não é programador, sem jargão. O pedido de publicar é a autorização para o caminho inteiro, sem confirmação a cada etapa. Use quando a pessoa quiser colocar no ar, publicar, lançar, subir para produção, atualizar o site ou o sistema de verdade, ou disser "pode publicar", "manda para o ar", "libera para os clientes", ou usar as palavras deploy, produção, prod, main ou master.
+description: Publica o projeto em produção num pedido só (passa pelo ambiente de testes, leva a linha dev para a main, que dispara a publicação automática do GitHub Actions, acompanha e confere no ar) para quem não é programador, sem jargão. O pedido com o destino claro é a autorização para o caminho inteiro, sem confirmação a cada etapa. Use quando a pessoa quiser colocar no ar para todo mundo, lançar, subir para produção, atualizar o site ou o sistema de verdade, ou disser "publica em produção", "manda para o ar", "libera para os clientes", ou usar as palavras deploy, produção, prod, main ou master. Se ela disser só "publica" num projeto com ambiente de testes, use esta skill para perguntar o destino antes; nunca suponha produção.
 ---
 
 # Publicar em produção
 
 Produção é o que está no ar para todo mundo. Nesta forma de trabalhar, a linha `main` (ou `master`) é produção: só recebe versões por um pedido de junção (pull request) da `dev`, aberto por aqui, e quem coloca no ar é a automação do GitHub (GitHub Actions) quando a `main` recebe uma versão nova.
 
-## O pedido é o ok
-Quando a pessoa pede para colocar no ar, ela já autorizou todas as etapas: salvar, passar pelo ambiente de testes, levar para produção e conferir. Faça tudo de uma vez. Não pergunte "posso publicar?" no meio e não fale em commit, push, merge ou pull request.
+## Produção só com o destino dito com todas as letras
+Produção pede cuidado redobrado. Siga por aqui só quando a pessoa disser produção sem margem de dúvida: "produção", "prod", "no ar para todo mundo", "para os clientes", "lançar". Se ela disse só "publica", "sobe" ou "manda" e o projeto tem ambiente de testes, pergunte o destino antes de mexer em qualquer coisa: "No ambiente de testes ou no ar para todo mundo?". Na dúvida, nunca suponha produção.
+
+## Com o destino claro, o pedido é o ok
+Quando a pessoa pede produção, ela já autorizou todas as etapas: salvar, passar pelo ambiente de testes, levar para produção e conferir. Faça tudo de uma vez. Não pergunte "posso publicar?" no meio e não fale em commit, push, merge ou pull request.
 
 Pergunte só quando:
 - Ela não pediu para publicar: foi você que percebeu que valeria. Ofereça em uma frase e espere.
-- Ela disse só "publica" e o projeto tem ambiente de testes: pergunte só o destino, uma vez ("No ambiente de testes ou no ar para todo mundo?").
+- O destino não ficou claro (veja acima).
 - A lista de segurança da primeira publicação encontrou algo crítico ou que só ela pode decidir.
 - A publicação faria algo destrutivo que não estava no pedido (por exemplo, uma mudança que apaga dados do banco).
 
@@ -21,8 +24,8 @@ Pare também se algo impedir de verdade (teste falhando, conflito que pede uma d
 ## 1. Existe publicação configurada?
 Leia os arquivos de `.github/workflows/`. Há publicação em produção quando um deles roda ao receber versões na `main`/`master` (`on: push` com essa linha, ou `workflow_dispatch` usado para isso) e tem passos que mandam o projeto para um servidor (ssh, rsync, scp, script de deploy, CLI de hospedagem como Vercel, Netlify, Fly, Railway, Render, Cloudflare, AWS, Google Cloud, Azure, ou `environment: production`). Um workflow que só roda testes não publica nada.
 
-Se não houver, **não leve nada para a `main`**. Salve o que estiver pendente (fica guardado no rascunho, com cópia na nuvem) e diga em linguagem simples:
-"Ainda não há para onde publicar: este projeto não tem um servidor configurado para ir ao ar. Suas mudanças estão guardadas no GitHub. Quando você tiver onde hospedar, eu monto a publicação automática pelo GitHub, e aí publicar vira um pedido só."
+Se não houver, **não leve nada para a `main`**: o que a pessoa quis, na prática, foi salvar. Salve o que estiver pendente (fica guardado no rascunho, com cópia na nuvem) e diga em linguagem simples:
+"Este projeto ainda não tem onde ficar no ar, então salvei suas mudanças e a cópia no GitHub. Quando você tiver onde hospedar, eu monto a publicação automática, e aí publicar vira um pedido só."
 
 ## 2. Passe pelo ambiente de testes
 1. Siga a skill `fabrica-de-asas-no-ar:versionamento-publicar-dev` inteira: ela salva, leva o rascunho para a `dev` e confere no endereço de testes, se houver. Se algo falhar ali, pare.

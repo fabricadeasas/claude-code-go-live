@@ -9,6 +9,13 @@ O ambiente de testes é uma cópia do site ou sistema num endereço só para con
 
 O pedido da pessoa já é o ok para tudo abaixo. Não pergunte nada no meio e não fale em commit, push ou merge. Pare só se algo impedir de verdade (teste falhando, conflito que pede uma decisão dela, login expirado) e diga em que ponto parou.
 
+## 0. O projeto tem ambiente de testes?
+Veja se existe a linha `dev` (ou `develop`), aqui ou no GitHub: `git branch -a`.
+
+Se não existe, o projeto não tem ambiente de testes. Não crie a `dev` por conta própria:
+- Se o projeto também não publica em lugar nenhum, o que a pessoa quis, na prática, foi salvar. Salve (skill `fabrica-de-asas:versionamento-salvar`) e conte em uma linha: "Este projeto ainda não tem onde ficar no ar, então salvei a versão e a cópia no GitHub."
+- Se o projeto publica direto em produção, não publique lá no lugar dos testes. Salve e diga: "Este projeto não tem ambiente de testes: ele vai direto para o ar. Salvei a versão. Quer que eu coloque no ar ou que eu monte um ambiente de testes antes?"
+
 ## 1. Leve o rascunho para a `dev`
 1. Salve o que estiver pendente no rascunho, com a cópia na nuvem (skill `fabrica-de-asas:versionamento-salvar`, com os ajustes das regras da Fábrica de Asas no Ar).
 2. Traga as novidades da `dev` para o rascunho: `git pull --no-rebase origin dev`. Se der conflito, siga a skill `fabrica-de-asas:versionamento-fundir`.

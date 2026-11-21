@@ -12,6 +12,11 @@
 #   - sending versions to a main that already exists in the cloud (git push);
 #   - opening a pull request into main from any line other than dev/develop.
 #
+# The lock only applies to projects that have a dev (or develop) line, here or in
+# the cloud: that line is the sign that the project has a test environment and a
+# production. Without it the repository only keeps the code (or publishes from
+# its main line), and nothing is blocked.
+#
 # The lock is on while this plugin's preferences are on; the preferencias skill
 # can turn it off (production-lock.sh off) when the person asks for it.
 #
@@ -78,6 +83,12 @@ ProductionLock::enabled() {
         return 1
     fi
     return 0
+}
+
+# The project works with a test line (dev/develop), locally or on any remote.
+ProductionLock::has_work_line() {
+    git_here for-each-ref --format='%(refname)' refs/heads refs/remotes |
+        grep -Eq '^refs/(heads|remotes/[^/]+)/(dev|develop)$'
 }
 
 ProductionLock::is_production() {
@@ -221,5 +232,6 @@ ProductionLock::check_segments() {
 }
 
 ProductionLock::enabled || exit 0
+ProductionLock::has_work_line || exit 0
 ProductionLock::check_segments
 exit 0
