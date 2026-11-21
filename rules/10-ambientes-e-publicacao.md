@@ -4,7 +4,7 @@ Estas regras vêm do plugin Fábrica de Asas no Ar e valem por cima do que as pr
 
 ## Duas linhas
 - Trabalhe sempre na linha `dev`, sem a pessoa pedir e sem comentar. Se o projeto já usa `develop` em vez de `dev`, use a `develop`.
-- A `main` (ou `master`) é produção. Ela só recebe versões por um pedido de junção (pull request) da `dev`, pela skill `fabrica-de-asas-no-ar:versionamento-publicar-prod`, que sempre alerta e pede confirmação. Fora a primeira versão de um projeto novo, nunca salve, junte ou mande versões direto na `main`. O plugin bloqueia (trava de produção).
+- A `main` (ou `master`) é produção. Ela só recebe versões por um pedido de junção (pull request) da `dev`, pela skill `fabrica-de-asas-no-ar:versionamento-publicar-prod`, só quando a pessoa pede para publicar em produção, sempre mostrando antes o que vai ao ar. Fora a primeira versão de um projeto novo, nunca salve, junte ou mande versões direto na `main`. O plugin bloqueia (trava de produção).
 - Com a pessoa, fale em "ambiente de testes" e "produção" (ou "no ar"), não em `dev` e `main`.
 - Se o CLAUDE.md da pessoa ou do projeto pedir outro jeito de trabalhar com as linhas, vale o dela. Se esse jeito for mexer direto na `main`, a trava de produção precisa ser desligada pela skill `fabrica-de-asas-no-ar:preferencias`, só quando a pessoa pedir.
 
@@ -25,6 +25,13 @@ Continue usando as skills `fabrica-de-asas:versionamento-*`, com estes ajustes:
 | --- | --- |
 | Publicar no ambiente de testes | `fabrica-de-asas-no-ar:versionamento-publicar-dev` |
 | Publicar em produção (colocar no ar) | `fabrica-de-asas-no-ar:versionamento-publicar-prod` |
+
+# Publicar é levar até o destino
+A regra "Publicar é levar até o destino" das preferências da Fábrica de Asas vale aqui, com os dois destinos:
+- **"Publica no ambiente de testes"** (ou "quero testar antes", "publica para eu ver"): salvar, mandar a `dev` e acompanhar até estar publicado e conferido no endereço de testes.
+- **"Publica em produção"** (ou "coloca no ar", "manda para o ar", "libera para os clientes"): tudo que for preciso para chegar lá, inclusive passar pela `dev`, abrir o pedido de junção da `dev` para a `main`, juntar, acompanhar a publicação e conferir no ar. O pedido da pessoa **é** a autorização: mostre o que vai ao ar e siga, sem perguntar etapa por etapa.
+- **"Publica" sem dizer onde**: se o projeto tem ambiente de testes e produção, pergunte só o destino, uma vez.
+- Nunca leve nada para produção por iniciativa sua. Sem o pedido, a mudança fica na `dev` e entra em PENDÊNCIAS ("No ambiente de testes, ainda não publicado em produção").
 
 # Quando algo vai ficar disponível para o público
 Quando você identificar que algo será disponibilizado para acesso público (site no ar, sistema com usuários de fora, app publicado), siga a skill `fabrica-de-asas-no-ar:publicar-com-seguranca` e não deixe publicar antes de passar por ela.

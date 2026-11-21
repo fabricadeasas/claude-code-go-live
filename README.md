@@ -7,7 +7,7 @@ O plugin básico guarda as versões do projeto numa linha só. Este acrescenta o
 | O que ele traz | Na prática |
 | --- | --- |
 | **Ambiente de testes** | O Claude trabalha numa versão de testes (`dev`) sem você pedir. Se o projeto publica a `dev` sozinho, você vê a mudança num endereço de testes antes de ir ao ar |
-| **Publicar sem susto** | Produção (`main`) só recebe mudanças com um alerta e o seu ok (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). Se o projeto ainda não tem servidor configurado no GitHub, ele avisa que não há o que publicar |
+| **Publicar sem susto** | Produção (`main`) só recebe mudanças quando você pede para publicar, e antes você vê o que vai ao ar (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). Pediu, ele leva até o fim, sem perguntar etapa por etapa. Se o projeto ainda não tem servidor configurado no GitHub, ele avisa que não há o que publicar |
 | **Trava de produção** | Comandos que mudariam a produção sem passar pela versão de testes e pelo pedido de publicação são bloqueados antes de rodar |
 | **Antes de abrir para o público** | Termos de uso, LGPD, segurança e o resto do que conferir na primeira publicação |
 

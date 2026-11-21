@@ -1,6 +1,6 @@
 ---
 name: versionamento-publicar-prod
-description: Publica o projeto em produção (leva a linha dev para a main, que dispara a publicação automática do GitHub Actions) para quem não é programador, sem jargão, sempre com alerta e confirmação. Use quando a pessoa quiser colocar no ar, publicar, lançar, subir para produção, atualizar o site ou o sistema de verdade, ou disser "pode publicar", "manda para o ar", "libera para os clientes", ou usar as palavras deploy, produção, prod, main ou master.
+description: Publica o projeto em produção (leva a linha dev para a main, que dispara a publicação automática do GitHub Actions) para quem não é programador, sem jargão, mostrando antes o que vai ao ar. O pedido da pessoa para publicar é a autorização. Use quando a pessoa quiser colocar no ar, publicar, lançar, subir para produção, atualizar o site ou o sistema de verdade, ou disser "pode publicar", "manda para o ar", "libera para os clientes", ou usar as palavras deploy, produção, prod, main ou master.
 ---
 
 # Publicar em produção
@@ -20,15 +20,21 @@ Se não houver, **não publique e não leve nada para a `main`**. Diga em lingua
 4. Se as mudanças mexem no banco de dados (migrations, scripts de banco), garanta um backup do banco de produção antes.
 5. Se é a primeira publicação do projeto, siga antes a skill `fabrica-de-asas-no-ar:publicar-com-seguranca`.
 
-## 3. Alerte e peça confirmação (sempre)
-Mesmo que a pessoa já tenha dito "publica", mostre o alerta e espere um sim claro depois dele:
+## 3. Mostre o que vai ao ar e siga
+Publicar em produção só acontece porque a pessoa pediu. Esse pedido ("publica em produção", "coloca no ar", "manda para o ar") **é** a autorização para o caminho inteiro: não pergunte "posso publicar?", "abro o pedido?", "posso juntar?".
 
-"⚠️ Isto vai colocar no ar, para todo mundo que usa <o site/sistema>, as seguintes mudanças:
+Antes de publicar, mostre em uma mensagem o que vai ao ar, para ela saber o que está indo:
+
+"⚠️ Publicando em <o site/sistema>, para todo mundo que usa, estas mudanças:
 - <mudança 1, em linguagem simples>
-- <mudança 2>
-Posso publicar?"
+- <mudança 2>"
 
-Sem um sim claro, não siga. Um sim dado antes do alerta não vale.
+E siga direto para o passo 4.
+
+Pare e pergunte só quando:
+- Ela **não** pediu produção: pediu só "publica", e o projeto tem ambiente de testes e produção. Pergunte só o destino, uma vez.
+- Vai ao ar algo que ela não sabe que estava na `dev` (por exemplo, mudanças de outra conversa ou de outra pessoa). Mostre a lista e pergunte se publica tudo junto.
+- Algo impede de verdade: teste falhando, conflito que pede decisão, login expirado, ou uma ação destrutiva que não estava no pedido (apagar dados).
 
 ## 4. Publique
 1. Abra o pedido de publicação e junte, pelo GitHub:
