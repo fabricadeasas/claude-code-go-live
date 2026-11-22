@@ -1,6 +1,6 @@
 {
   "name": "fabrica-de-asas-no-ar",
-  "displayName": "Fábrica de Asas no Ar",
+  "displayName": "Claude Code Go Live - Fábrica de Asas",
   "description": "Complemento do plugin Fábrica de Asas para quem vai colocar um site ou sistema no ar: salvar sem publicar, ambiente de testes, publicação em produção num pedido só, mostrando antes o que vai ao ar, trava que protege a produção e a lista do que conferir antes de abrir para o público.",
   "author": {
     "name": "Guilherme Almeida Girardi",
