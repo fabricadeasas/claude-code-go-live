@@ -12,7 +12,7 @@ A `dev` nasce quando o projeto ganha um ambiente de testes: ao montar a publica�
 ## Três lugares
 - **Rascunho**: uma linha por assunto, com nome curto (ex.: `formulario-contato`). É onde o trabalho acontece. Salvar guarda a versão aqui e a cópia na nuvem, e não coloca nada em lugar nenhum.
 - **`dev`** (ou `develop`): o ambiente de testes. Só recebe um rascunho quando a pessoa pede para publicar.
-- **`main`** (ou `master`): produção. Só recebe versões por um pedido de junção (pull request) da `dev`, pela skill `fabrica-de-asas-no-ar:versionamento-publicar-prod`. Nunca salve, junte ou mande versões direto na `main`. O plugin bloqueia (trava de produção).
+- **`main`** (ou `master`): produção. Só recebe versões por um pedido de junção (pull request) da `dev`, pela skill `fabrica-de-asas-no-ar:versionamento-publicar-prod`, só quando a pessoa pede para publicar em produção, sempre mostrando antes o que vai ao ar. Nunca salve, junte ou mande versões direto na `main`. O plugin bloqueia (trava de produção).
 - Com a pessoa, fale em "rascunho", "ambiente de testes" e "produção" (ou "no ar"), não em branch, `dev` e `main`.
 - Se o CLAUDE.md da pessoa ou do projeto pedir outro jeito de trabalhar com as linhas, vale o dela. Se esse jeito for mexer direto na `main`, a trava de produção precisa ser desligada pela skill `fabrica-de-asas-no-ar:preferencias`, só quando a pessoa pedir.
 
@@ -27,7 +27,7 @@ A `dev` nasce quando o projeto ganha um ambiente de testes: ao montar a publica�
 - Produção pede cuidado redobrado: só vá para lá quando a pessoa disser produção com todas as letras ("produção", "no ar para todo mundo", "para os clientes"). Na dúvida sobre o destino, pergunte; nunca suponha produção.
 - Com o destino claro, o pedido já é a autorização para todas as etapas até lá. Não pare para perguntar "posso salvar?", "posso juntar?", "posso publicar?" no meio do caminho, e não fale em commit, push ou merge.
 - Pare no meio só quando algo impedir de verdade: teste falhando, conflito que pede uma decisão dela, login expirado, algo crítico na lista de segurança da primeira publicação, ou uma ação destrutiva que não estava no pedido (por exemplo, uma mudança que apaga dados do banco). Diga em que ponto parou e por quê.
-- Nada de ponta solta: se algo ficou salvo num rascunho e ainda não foi publicado, diga isso no fim da resposta, em uma linha.
+- Nunca leve nada para o ambiente de testes ou para produção por iniciativa sua. Sem o pedido, a mudança fica no rascunho (ou na `dev`) e entra em PENDÊNCIAS ("Guardado num rascunho, sem publicar" ou "No ambiente de testes, ainda não publicado em produção").
 
 ## As skills de versionamento, com o rascunho
 Continue usando as skills `fabrica-de-asas:versionamento-*`, com estes ajustes:

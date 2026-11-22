@@ -8,7 +8,7 @@ O plugin básico guarda as versões do projeto numa linha só. Este acrescenta o
 | --- | --- |
 | **Salvar não publica** | "Salva" guarda a mudança num rascunho, com cópia no GitHub, sem colocar nada no ar |
 | **Ambiente de testes** | "Publica nos testes" leva o rascunho para a versão de testes (`dev`). Se o projeto publica a `dev` sozinho, o Claude confere a mudança no endereço de testes |
-| **Publicar num pedido só** | "Publica em produção" faz o caminho inteiro até produção (`main`) e confere no site, sem pedir ok a cada etapa (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). Se a pessoa diz só "publica", o Claude pergunta se é nos testes ou no ar para todo mundo: nunca supõe produção. Se o projeto não tem para onde publicar, ele salva e avisa |
+| **Publicar num pedido só** | "Publica em produção" faz o caminho inteiro até produção (`main`) e confere no site, sem pedir ok a cada etapa. Antes, você vê a lista do que vai ao ar (`/fabrica-de-asas-no-ar:versionamento-publicar-prod`). Se a pessoa diz só "publica", o Claude pergunta se é nos testes ou no ar para todo mundo: nunca supõe produção. Se o projeto não tem para onde publicar, ele salva e avisa |
 | **Trava de produção** | Comandos que mudariam a produção sem passar pela versão de testes e pelo pedido de publicação são bloqueados antes de rodar |
 | **Só onde faz sentido** | Tudo isso vale nos projetos que têm a versão de testes (`dev`). Projeto que só guarda o código continua como no plugin básico, e a trava não bloqueia nada |
 | **Antes de abrir para o público** | Termos de uso, LGPD, segurança e o resto do que conferir na primeira publicação |

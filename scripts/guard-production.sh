@@ -62,7 +62,7 @@ block() {
     exit 2
 }
 
-PRODUCTION_MESSAGE="Bloqueado pelo plugin Fábrica de Asas no Ar: a linha main (ou master) é produção e só recebe versões por um pedido de junção (pull request) vindo da dev, quando a pessoa pede para publicar, como explica a skill fabrica-de-asas-no-ar:versionamento-publicar-prod. Salve as versões num rascunho do assunto (git switch -c <assunto>) e, quando a pessoa pedir para publicar, siga aquela skill. Não tente outro caminho para mudar a main. Explique para a pessoa em linguagem simples, sem jargão de git, o que você ia fazer e o caminho seguro."
+PRODUCTION_MESSAGE="Bloqueado pelo plugin Fábrica de Asas no Ar: a linha main (ou master) é produção e só recebe versões por um pedido de junção (pull request) vindo da dev, quando a pessoa pede para publicar em produção, como explica a skill fabrica-de-asas-no-ar:versionamento-publicar-prod. Salve as versões num rascunho do assunto (git switch -c <assunto>) e, quando a pessoa pedir para publicar em produção, siga aquela skill. Não tente outro caminho para mudar a main. Explique para a pessoa em linguagem simples, sem jargão de git, o que você ia fazer e o caminho seguro."
 
 # Separator between the tokens of one segment in the lexer output.
 SEP=$'\037'

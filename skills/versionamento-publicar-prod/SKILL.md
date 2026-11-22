@@ -1,6 +1,6 @@
 ---
 name: versionamento-publicar-prod
-description: Publica o projeto em produção num pedido só (passa pelo ambiente de testes, leva a linha dev para a main, que dispara a publicação automática do GitHub Actions, acompanha e confere no ar) para quem não é programador, sem jargão. O pedido com o destino claro é a autorização para o caminho inteiro, sem confirmação a cada etapa. Use quando a pessoa quiser colocar no ar para todo mundo, lançar, subir para produção, atualizar o site ou o sistema de verdade, ou disser "publica em produção", "manda para o ar", "libera para os clientes", ou usar as palavras deploy, produção, prod, main ou master. Se ela disser só "publica" num projeto com ambiente de testes, use esta skill para perguntar o destino antes; nunca suponha produção.
+description: Publica o projeto em produção num pedido só (passa pelo ambiente de testes, leva a linha dev para a main, que dispara a publicação automática do GitHub Actions, acompanha e confere no ar) para quem não é programador, sem jargão, mostrando antes o que vai ao ar. O pedido com o destino claro é a autorização para o caminho inteiro, sem confirmação a cada etapa. Use quando a pessoa quiser colocar no ar para todo mundo, lançar, subir para produção, atualizar o site ou o sistema de verdade, ou disser "publica em produção", "manda para o ar", "libera para os clientes", ou usar as palavras deploy, produção, prod, main ou master. Se ela disser só "publica" num projeto com ambiente de testes, use esta skill para perguntar o destino antes; nunca suponha produção.
 ---
 
 # Publicar em produção
@@ -34,7 +34,16 @@ Se não houver, **não leve nada para a `main`**: o que a pessoa quis, na práti
 4. Se as mudanças mexem no banco de dados (migrations, scripts de banco), faça um backup do banco de produção antes, sem perguntar.
 5. Se é a primeira publicação do projeto, passe antes pela skill `fabrica-de-asas-no-ar:publicar-com-seguranca`.
 
-## 3. Publique
+## 3. Mostre o que vai ao ar e siga
+Antes de publicar, mostre em uma mensagem o que vai ao ar, para a pessoa saber o que está indo. Não é uma pergunta: siga direto para o passo 4.
+
+"⚠️ Publicando em <o site/sistema>, para todo mundo que usa, estas mudanças:
+- <mudança 1, em linguagem simples>
+- <mudança 2>"
+
+Se vai ao ar algo que ela não sabe que estava na `dev` (por exemplo, mudanças de outra conversa ou de outra pessoa), aí sim pare: mostre a lista e pergunte se publica tudo junto.
+
+## 4. Publique
 1. Abra o pedido de publicação e junte, pelo GitHub:
    `gh pr create --base main --head dev --title "<resumo do que vai ao ar>" --body "<lista das mudanças>"`
    `gh pr merge --merge` (use `--merge`, nunca `--squash` ou `--rebase`: eles fazem a `main` e a `dev` divergirem; e nunca `--delete-branch`: a `dev` fica).
@@ -42,7 +51,7 @@ Se não houver, **não leve nada para a `main`**: o que a pessoa quis, na práti
 2. Este é o único caminho para a `main`. Nunca junte nem mande nada direto nela (`git merge` ou `git push` na `main`): o plugin bloqueia. Se o `gh` não funcionar, resolva a causa (falta de login: peça para a pessoa rodar `gh auth login`) e tente de novo. Se a cópia das versões não está no GitHub, não há como publicar por aqui: explique e ofereça criar a cópia (skill `fabrica-de-asas:versionamento-sincronizar`).
 3. Continue na `dev` e traga a versão de junção da `main`: `git pull --no-rebase origin main`.
 
-## 4. Acompanhe e confira
+## 5. Acompanhe e confira
 1. Acompanhe a publicação: `gh run list --branch main --limit 1` e `gh run watch <id> --exit-status`.
 2. Se passou, abra o endereço do site (está no workflow, no README ou pergunte) e confira que a mudança está lá.
 3. Conte em linguagem simples o que foi ao ar: "Publiquei. Já está no ar em <endereço>:" seguido das mudanças, uma por linha.
