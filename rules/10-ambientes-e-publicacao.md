@@ -1,37 +1,53 @@
-# Ambientes: `dev` para trabalhar, `main` para produção
+# Ambientes: rascunho para trabalhar, `dev` para testes, `main` para produção
 
-Estas regras vêm do plugin Fábrica de Asas no Ar e valem por cima do que as preferências da Fábrica de Asas dizem sobre a linha de trabalho: o trabalho acontece na `dev`, e a `main` é produção.
+Estas regras vêm do plugin Fábrica de Asas no Ar e valem por cima do que as preferências da Fábrica de Asas dizem sobre a linha de trabalho.
 
-## Duas linhas
-- Trabalhe sempre na linha `dev`, sem a pessoa pedir e sem comentar. Se o projeto já usa `develop` em vez de `dev`, use a `develop`.
-- A `main` (ou `master`) é produção. Ela só recebe versões por um pedido de junção (pull request) da `dev`, pela skill `fabrica-de-asas-no-ar:versionamento-publicar-prod`, só quando a pessoa pede para publicar em produção, sempre mostrando antes o que vai ao ar. Fora a primeira versão de um projeto novo, nunca salve, junte ou mande versões direto na `main`. O plugin bloqueia (trava de produção).
-- Com a pessoa, fale em "ambiente de testes" e "produção" (ou "no ar"), não em `dev` e `main`.
+## Quando valem
+Só em projetos que têm a linha `dev` (ou `develop`), aqui ou no GitHub (`git branch -a`). Ela é o sinal de que o projeto tem ambiente de testes e produção.
+
+Sem a `dev`, o projeto só guarda o código, ou publica direto da linha principal. Aí estas regras não se aplicam: valem só as preferências da Fábrica de Asas (trabalho na linha principal), e a trava de produção não bloqueia nada. Não crie a `dev` só porque ela não existe.
+
+A `dev` nasce quando o projeto ganha um ambiente de testes: ao montar a publicação automática com ambiente de testes, crie a `dev` a partir da `main` (`git switch -c dev` e `git push -u origin dev`) e passe a trabalhar como abaixo.
+
+## Três lugares
+- **Rascunho**: uma linha por assunto, com nome curto (ex.: `formulario-contato`). É onde o trabalho acontece. Salvar guarda a versão aqui e a cópia na nuvem, e não coloca nada em lugar nenhum.
+- **`dev`** (ou `develop`): o ambiente de testes. Só recebe um rascunho quando a pessoa pede para publicar.
+- **`main`** (ou `master`): produção. Só recebe versões por um pedido de junção (pull request) da `dev`, pela skill `fabrica-de-asas-no-ar:versionamento-publicar-prod`, só quando a pessoa pede para publicar em produção, sempre mostrando antes o que vai ao ar. Nunca salve, junte ou mande versões direto na `main`. O plugin bloqueia (trava de produção).
+- Com a pessoa, fale em "rascunho", "ambiente de testes" e "produção" (ou "no ar"), não em branch, `dev` e `main`.
 - Se o CLAUDE.md da pessoa ou do projeto pedir outro jeito de trabalhar com as linhas, vale o dela. Se esse jeito for mexer direto na `main`, a trava de produção precisa ser desligada pela skill `fabrica-de-asas-no-ar:preferencias`, só quando a pessoa pedir.
 
-## As skills de versionamento, com a `dev`
+## Salvar e publicar: um pedido, o caminho inteiro
+| A pessoa diz | O que você faz, do começo ao fim |
+| --- | --- |
+| "salva", "guarda", "salva para eu ver depois" | Versão no rascunho e cópia na nuvem. Nada vai para o ambiente de testes nem para produção |
+| "publica nos testes", "em homologação", "quero ver funcionando antes" | Salva, leva o rascunho para a `dev`, acompanha a publicação e confere no endereço de testes (`fabrica-de-asas-no-ar:versionamento-publicar-dev`) |
+| "publica em produção", "coloca no ar para todo mundo", "libera para os clientes" | Tudo o que o ambiente de testes pede e, em seguida, leva a `dev` para a `main`, acompanha e confere no ar (`fabrica-de-asas-no-ar:versionamento-publicar-prod`) |
+| Só "publica", "sobe", "manda", sem dizer onde | Pergunte o destino, uma vez: "No ambiente de testes ou no ar para todo mundo?" |
+
+- Produção pede cuidado redobrado: só vá para lá quando a pessoa disser produção com todas as letras ("produção", "no ar para todo mundo", "para os clientes"). Na dúvida sobre o destino, pergunte; nunca suponha produção.
+- Com o destino claro, o pedido já é a autorização para todas as etapas até lá. Não pare para perguntar "posso salvar?", "posso juntar?", "posso publicar?" no meio do caminho, e não fale em commit, push ou merge.
+- Pare no meio só quando algo impedir de verdade: teste falhando, conflito que pede uma decisão dela, login expirado, algo crítico na lista de segurança da primeira publicação, ou uma ação destrutiva que não estava no pedido (por exemplo, uma mudança que apaga dados do banco). Diga em que ponto parou e por quê.
+- Nunca leve nada para o ambiente de testes ou para produção por iniciativa sua. Sem o pedido, a mudança fica no rascunho (ou na `dev`) e entra em PENDÊNCIAS ("Guardado num rascunho, sem publicar" ou "No ambiente de testes, ainda não publicado em produção").
+
+## As skills de versionamento, com o rascunho
 Continue usando as skills `fabrica-de-asas:versionamento-*`, com estes ajustes:
-- **Salvar** (`versionamento-salvar`): salve na `dev`. Se estiver na `main`, passe para a `dev` antes (`git switch dev`, ou `git switch -c dev` se ela ainda não existe); as mudanças não salvas vêm junto. Projeto novo: `git init -b main`, a primeira versão na `main` e logo depois `git switch -c dev`.
+- **Salvar** (`versionamento-salvar`):
+  - Salve no rascunho do assunto. Se estiver na `dev` ou na `main`, crie o rascunho antes (`git switch -c <assunto>`); as mudanças não salvas vêm junto.
+  - Salvar termina sempre com a cópia na nuvem (`git push -u origin <rascunho>`), sem perguntar: mandar um rascunho não publica nada.
 - **Sincronizar** (`versionamento-sincronizar`):
-  - Antes de trazer as novidades, garanta que está na `dev`. Se ela não existe aqui nem em `origin/dev`, crie a partir da `main` (`git switch -c dev`) e mande (`git push -u origin dev`), sem comentar com a pessoa.
-  - Depois do pull, se a `main` da nuvem tem versões que a `dev` não tem (`git log --oneline dev..origin/main`), traga também: `git pull --no-rebase origin main`.
-  - Mandar a `dev` não precisa de confirmação: ela não é produção. Se a `dev` publica sozinha no ambiente de testes, acompanhe como diz a skill `fabrica-de-asas-no-ar:versionamento-publicar-dev`.
-  - Ao criar a cópia na nuvem, use `gh repo create <nome> --private --source=. --remote=origin` e mande a `main` primeiro e depois a `dev` (`git push -u origin main` e `git push -u origin dev`).
-  - Nunca mande versões para a `main` por aqui.
-- **Baixar** (`versionamento-baixar`): depois de baixar, entre na `dev` (`git switch dev`). Se ela não existir, crie como no sincronizar.
-- **Fundir** (`versionamento-fundir`): rascunhos são juntados na `dev` (`git switch dev` e `git merge <rascunho>`, ou `gh pr create --base dev --head <rascunho>` se o projeto revisa por pull request). Nunca junte nada na `main` por aqui.
+  - Assunto novo começa da `dev` atualizada: `git switch dev`, `git pull --no-rebase`, depois `git switch -c <assunto>`.
+  - Se a `dev` só existe no GitHub, traga para cá: `git switch dev` (o git cria a linha local a partir da nuvem).
+  - Num rascunho, depois de trazer as novidades dele, traga também as da `dev`: `git pull --no-rebase origin dev`.
+  - Na `dev`, se a `main` da nuvem tem versões que a `dev` não tem (`git log --oneline dev..origin/main`), traga também: `git pull --no-rebase origin main`.
+  - Por aqui, mande só rascunhos. A `dev` e a `main` recebem versões pelas skills de publicação.
+- **Baixar** (`versionamento-baixar`): depois de baixar, se o projeto tem `dev`, entre nela (`git switch dev`). O trabalho começa num rascunho.
+- **Fundir** (`versionamento-fundir`): juntar um rascunho na `dev` é publicar no ambiente de testes, então acontece pela skill `fabrica-de-asas-no-ar:versionamento-publicar-dev`, quando a pessoa pede para publicar. Nunca junte nada na `main` por aqui.
 
 ## Skills de publicação
 | Operação | Skill |
 | --- | --- |
 | Publicar no ambiente de testes | `fabrica-de-asas-no-ar:versionamento-publicar-dev` |
 | Publicar em produção (colocar no ar) | `fabrica-de-asas-no-ar:versionamento-publicar-prod` |
-
-# Publicar é levar até o destino
-A regra "Publicar é levar até o destino" das preferências da Fábrica de Asas vale aqui, com os dois destinos:
-- **"Publica no ambiente de testes"** (ou "quero testar antes", "publica para eu ver"): salvar, mandar a `dev` e acompanhar até estar publicado e conferido no endereço de testes.
-- **"Publica em produção"** (ou "coloca no ar", "manda para o ar", "libera para os clientes"): tudo que for preciso para chegar lá, inclusive passar pela `dev`, abrir o pedido de junção da `dev` para a `main`, juntar, acompanhar a publicação e conferir no ar. O pedido da pessoa **é** a autorização: mostre o que vai ao ar e siga, sem perguntar etapa por etapa.
-- **"Publica" sem dizer onde**: se o projeto tem ambiente de testes e produção, pergunte só o destino, uma vez.
-- Nunca leve nada para produção por iniciativa sua. Sem o pedido, a mudança fica na `dev` e entra em PENDÊNCIAS ("No ambiente de testes, ainda não publicado em produção").
 
 # Quando algo vai ficar disponível para o público
 Quando você identificar que algo será disponibilizado para acesso público (site no ar, sistema com usuários de fora, app publicado), siga a skill `fabrica-de-asas-no-ar:publicar-com-seguranca` e não deixe publicar antes de passar por ela.
