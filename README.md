@@ -18,7 +18,7 @@ O plugin básico guarda as versões do projeto numa linha só. Este acrescenta o
 Precisa do plugin `fabrica-de-asas`; se ainda não tiver, ele vem junto. No Claude Code:
 
 ```
-/plugin marketplace add fabricadeasas/claude-code-for-everyone
+/plugin marketplace add fabricadeasas/claude-plugins
 /plugin install fabrica-de-asas-no-ar@fabricadeasas
 ```
 
